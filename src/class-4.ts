@@ -4,10 +4,11 @@
 let numbers: Array<number> = [1, 2, 3, 4, 5];
 let strings: Array<string> = ["1", "2", "3", "4", "5"];
 
-let div = document.querySelector<HTMLDivElement>("#myDiv1");
-let button = document.querySelector<HTMLButtonElement>("#myButton1");
+// let div = document.querySelector<HTMLDivElement>("#myDiv1");
+// let button = document.querySelector<HTMLButtonElement>("#myButton1");
 
-button.click();
+// button이 null일 수도 있으므로 ?로 체크를 해줘야함 
+// button?.click();
 
 function getFirstElement<T>(arr: T[]): T | undefined {
     if (!arr.length) {
