@@ -24,6 +24,12 @@ const div = document.querySelector('div'); // -> HTMLDivElement | null
 
 const buttons = document.querySelectorAll('button'); // -> NodeListOf<HTMLButtonElement>
 
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        console.log(button.id);
+    })
+})
+
 const myDiv = document.getElementById('myDiv');
 
 myDiv?.addEventListener('click', (e: MouseEvent | KeyboardEvent) => {
@@ -35,3 +41,5 @@ myDiv?.addEventListener('click', (e: MouseEvent | KeyboardEvent) => {
         console.log(e.code);
     }
 })
+
+export { };

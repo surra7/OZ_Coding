@@ -63,3 +63,5 @@ class MyCountry extends AbstractCountry{
 const myCountry = new MyCountry("Germany", "Berlin");
 myCountry.displayInfo();
 
+
+export { };

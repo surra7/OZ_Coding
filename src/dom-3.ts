@@ -97,3 +97,4 @@ type OptionalUserType = OptionalType<UserType>;
 // UserType의 모든 속성을 읽기 전용으로 변환
 type ReadonlyUserType = ReadonlyType<UserType>;
 
+export { }; // 식별자 중복방지를 위해 모듈화

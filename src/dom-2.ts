@@ -111,3 +111,14 @@ function handleResponse(response: ApiResponseType) {
     }
 }
 
+function processData(data: string | string[] | number | number[]): void {
+    if (Array.isArray(data)) {
+        data.forEach(item => {
+            console.log(item);
+        })
+    } else {
+        console.log(data);
+    }
+}
+
+export { };
