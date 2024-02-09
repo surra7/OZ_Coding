@@ -3,9 +3,10 @@
 // Array 제네릭
 let numbers = [1, 2, 3, 4, 5];
 let strings = ["1", "2", "3", "4", "5"];
-let div = document.querySelector("#myDiv1");
-let button = document.querySelector("#myButton1");
-button.click();
+// let div = document.querySelector<HTMLDivElement>("#myDiv1");
+// let button = document.querySelector<HTMLButtonElement>("#myButton1");
+// button이 null일 수도 있으므로 ?로 체크를 해줘야함 
+// button?.click();
 function getFirstElement(arr) {
     if (!arr.length) {
         return undefined;

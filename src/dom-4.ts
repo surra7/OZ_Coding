@@ -128,6 +128,3 @@ function saveUser(...params: Params) {
 }
 
 saveUser("David", 33);
-
-
-export { };

@@ -11,6 +11,7 @@ var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
 var _Country_name;
+Object.defineProperty(exports, "__esModule", { value: true });
 // interface를 클래스에 적용시킬때는 implements 사용
 class Continent {
     constructor(name) {
