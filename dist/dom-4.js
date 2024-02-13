@@ -1,11 +1,10 @@
-"use strict";
 // 4-4. 유틸리티 타입
-const capital = {
+var capital = {
     "South Korea": "Seoul",
     "United States": "Washington D.C",
     "Canada": "Ottawa"
 };
-const countryInfo = {
+var countryInfo = {
     'South Korea': {
         capital: 'Seoul',
         population: 51000000,
@@ -22,12 +21,20 @@ const countryInfo = {
         continent: 'North America'
     }
 };
-function someFunction(...param) {
-    const [id] = param;
+function someFunction() {
+    var param = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        param[_i] = arguments[_i];
+    }
+    var id = param[0];
 }
 someFunction(100);
-function saveUser(...params) {
-    const [name, age] = params;
+function saveUser() {
+    var params = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        params[_i] = arguments[_i];
+    }
+    var name = params[0], age = params[1];
     console.log([name, age]);
 }
 saveUser("David", 33);

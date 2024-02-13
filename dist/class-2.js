@@ -1,4 +1,3 @@
-"use strict";
 // user = {
 //     id: "1234",
 //     name: "John"

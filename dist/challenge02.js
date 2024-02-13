@@ -1,4 +1,4 @@
-// 4-2. 타입 좁히기 Type Narrowing
+// 비동기 처리를 위한 제네릭 API 핸들러 클래스 구현
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,89 +35,67 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-function getId(id) {
-    if (typeof id === 'number') {
-        return id;
+// 클래스 정의
+var ApiHandler = /** @class */ (function () {
+    function ApiHandler(baseUrl) {
+        this.baseUrl = baseUrl;
     }
-    return Number(id);
-}
-getId(1);
-getId("1");
-function power(option) {
-    if (option === "off") {
-        console.log("power off");
-    }
-    else {
-        console.log("power on");
-    }
-}
-power("on");
-power("off");
-// in 키워드 사용하는 방법
-// type iOS = { iMessage: () => void; }
-// type android = { message: () => void; }
-// function sendMessage(os: iOS | android) {
-//     if ("iMessage" in os) {
-//         os.iMessage(); // iOS로 좁혀진다
-//     } else {
-//         os.message(); // android로 좁혀진다
-//     }
-// }
-// sendMessage({ iMessage: () => { console.log("sending iMessage") } });
-// sendMessage({ message: () => console.log("sending message") });
-// instanceof narrowing -> 요소가 특정 클래스에 속해있는지
-var ApiResponse = /** @class */ (function () {
-    function ApiResponse() {
-    }
-    return ApiResponse;
+    // base url (ex. https://api.somdomain.com)
+    // endpoint (ex. /users, /posts, /profiles)
+    // base url에 endpoint를 이어붙이는 형식
+    ApiHandler.prototype.fetchData = function (endpoint) {
+        return __awaiter(this, void 0, void 0, function () {
+            var url, response_1, data, error_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        url = this.baseUrl + endpoint;
+                        return [4 /*yield*/, fetch(url)];
+                    case 1:
+                        response_1 = _a.sent();
+                        // 오류 발생했을 경우
+                        if (!response_1.ok) {
+                            throw new Error("".concat(response_1.status));
+                        }
+                        return [4 /*yield*/, response_1.json()];
+                    case 2:
+                        data = _a.sent();
+                        return [2 /*return*/, data];
+                    case 3:
+                        error_1 = _a.sent();
+                        throw new Error("\uC5D0\uB7EC \uBC1C\uC0DD: ".concat(error_1));
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    return ApiHandler;
 }());
-var ErrorResponse = /** @class */ (function () {
-    function ErrorResponse() {
-    }
-    return ErrorResponse;
-}());
-function handleApiresponse(response) {
+// 메인 함수
+function main() {
     return __awaiter(this, void 0, void 0, function () {
+        var baseUrl, apiHandler, posts, error_2;
         return __generator(this, function (_a) {
-            if (response instanceof ApiResponse) {
-                // 데이터 처리
+            switch (_a.label) {
+                case 0:
+                    baseUrl = 'https://jsonplaceholder.typicode.com';
+                    apiHandler = new ApiHandler(baseUrl);
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, apiHandler.fetchData("/posts")];
+                case 2:
+                    posts = _a.sent();
+                    posts.forEach(function (post) { return console.log(post); });
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_2 = _a.sent();
+                    console.log(error_2);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
-            else if (response instanceof ErrorResponse) {
-                // 에러 처리
-            }
-            return [2 /*return*/];
         });
     });
 }
-var apiResponse = new ApiResponse();
-var errorResponse = new ErrorResponse();
-handleApiresponse(apiResponse);
-handleApiresponse(errorResponse);
-// 타입 가드 (type predicates)
-// response가 ErrorResponse와 일치하는지 판별해서 반환
-function isErrorResponse(response) {
-    return response.message !== undefined;
-}
-var response = { message: "error.." };
-if (isErrorResponse(response)) {
-    // 에러 케이스
-    console.log(response.message);
-}
-function handleResponse(response) {
-    if (response.type === "success") {
-        console.log('data: ', response.data);
-    }
-    else {
-        console.log(response.message);
-    }
-}
-function processData(data) {
-    if (Array.isArray(data)) {
-        data.forEach(function (item) {
-            console.log(item);
-        });
-    }
-    else {
-        console.log(data);
-    }
-}
+main();

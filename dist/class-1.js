@@ -1,4 +1,3 @@
-"use strict";
 // 문자열
 // const a: string = '';
 // const b: string = "";

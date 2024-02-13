@@ -1,4 +1,3 @@
-"use strict";
 // 5. 제네릭 클래스
 // class Item<T>{
 //     #content: T | null;

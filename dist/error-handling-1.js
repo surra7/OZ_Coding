@@ -1,5 +1,19 @@
-"use strict";
 // 5-1. 에러 처리
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 // 타입스크립트에서의 에러 처리는 자바스크립트의 기능을 기반으로 한다
 // try-catch 사용시 catch 블럭의 에러 매개변수에 타입지정 가능
 // try {
@@ -14,7 +28,7 @@ function checkPositiveNumber(num) {
         // 예외 발생
         throw new Error("number should be positive");
     }
-    console.log(`${num} is a positive number`);
+    console.log("".concat(num, " is a positive number"));
 }
 try {
     checkPositiveNumber(10);
@@ -25,12 +39,15 @@ catch (error) {
         console.log(error.message);
     }
 }
-class CustomError extends Error {
-    constructor(message) {
-        super(message);
-        this.name = "CustomError";
+var CustomError = /** @class */ (function (_super) {
+    __extends(CustomError, _super);
+    function CustomError(message) {
+        var _this = _super.call(this, message) || this;
+        _this.name = "CustomError";
+        return _this;
     }
-}
+    return CustomError;
+}(Error));
 try {
     throw new CustomError("custom error...");
 }

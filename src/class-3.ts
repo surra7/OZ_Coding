@@ -16,18 +16,20 @@ class Continent implements ContinentInterface{
         return this.continentName;
     }
 }
+
+// ECMAScript 2015 이상 부터는 private 대신 #을 써도 됨. 사용할 때도 앞에 #을 붙여야함.
 class Country extends Continent{
-    #name: string;
+    private name: string;
     capital: string;
 
     constructor(continentName: string, name: string, capital: string) {
         super(continentName); // 부모 클래스의 constructor를 호출해줌
-        this.#name = name;
+        this.name = name;
         this.capital = capital;
     }
 
     getInfo() {
-        return `${this.#name}, ${this.capital}, ${this.getContinentName()}`
+        return `${this.name}, ${this.capital}, ${this.getContinentName()}`
         // 그냥 this.continentName 해도 됨 -> public 일때 만!
     }
 }
