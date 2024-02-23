@@ -34,6 +34,7 @@ const Center = styled.div`
 `;
 
 const Logo = styled.img`
+  margin-top: 80px;
   margin-bottom: 1.3rem;
   width: 50px;
 `;

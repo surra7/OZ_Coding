@@ -197,7 +197,7 @@ const NavWrapper = styled.nav`
   right: 0;
   height: 70px;
   background-color: ${(props) =>
-    props.show === "true" ? "#090b13" : "#000000"};
+    props.show === "true" ? "#000000" : "#000000"};
   display: flex;
   justify-content: space-between;
   align-items: center;
