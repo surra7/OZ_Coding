@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
 
 export const OrderContext = createContext();
 
@@ -55,7 +49,14 @@ export function OrderContextProvider(props) {
       setOrderCounts(newOrderCounts);
     }
 
-    return [{ ...orderCounts, totals }, updateItemCount];
+    function resetOrderCounts() {
+      setOrderCounts({
+        products: new Map(),
+        options: new Map(),
+      });
+    }
+
+    return [{ ...orderCounts, totals }, updateItemCount, resetOrderCounts];
   }, [orderCounts, totals]);
 
   // return <OrderContext.Provider value>{props.children}</OrderContext.Provider>;

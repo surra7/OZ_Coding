@@ -4,7 +4,7 @@ import axios from "axios";
 
 const CompletePage = ({ setStep }) => {
   const [orderHistory, setOrderHistory] = useState([]);
-  const [orderData] = useContext(OrderContext);
+  const [orderData, , resetOrderCounts] = useContext(OrderContext);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -50,10 +50,8 @@ const CompletePage = ({ setStep }) => {
         <br />
         <button
           onClick={() => {
+            resetOrderCounts();
             setStep(0);
-            orderData.totals.products = 0;
-            orderData.totals.options = 0;
-            orderData.totals.total = 0;
           }}
         >
           첫 페이지로
