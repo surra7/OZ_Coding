@@ -18,7 +18,7 @@ const Home = ({
   }[];
 }) => {
   return (
-    <div>
+    <div className={homeStyles.container}>
       <Head>
         <title>Subum</title>
       </Head>
