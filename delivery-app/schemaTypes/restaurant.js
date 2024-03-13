@@ -55,7 +55,7 @@ export default defineType({
       name: 'dishes',
       title: 'Dishes',
       type: 'array',
-      of: [{type: 'reference', to: {type: 'dish'}}],
+      of: [{type: 'reference', to: [{type: 'dish'}]}],
       // dish.js에 있는 데이터와 참조 관계를 맺음
     }),
   ],

@@ -1,7 +1,12 @@
 import React from "react";
+import { Text, View } from "react-native";
 
 const PreparingOrderScreen = () => {
-  return <div>PreparingOrderScreen</div>;
+  return (
+    <View>
+      <Text>PreparingOrderScreen</Text>;
+    </View>
+  );
 };
 
 export default PreparingOrderScreen;

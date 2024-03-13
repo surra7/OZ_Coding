@@ -21,7 +21,7 @@ export default defineType({
       name: 'restaurants',
       title: 'Restaurants',
       type: 'array',
-      of: [{type: 'reference', to: {type: 'restaurant'}}],
+      of: [{type: 'reference', to: [{type: 'restaurant'}]}],
       // restaurant.js에 있는 데이터와 참조 관계를 맺음
     }),
   ],

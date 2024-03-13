@@ -18,27 +18,14 @@ const Navigation = () => {
         <Stack.Screen
           name="Basket"
           component={BasketScreen}
-          options={{
-            presentation: "modal",
-            headerShown: false,
-          }}
+          options={{ presentation: "modal", headerShown: false }}
         />
         <Stack.Screen
           name="PreparingOrder"
           component={PreparingOrderScreen}
-          options={{
-            presentation: "fullScreenModal",
-            headerShown: false,
-          }}
+          options={{ presentation: "fullScreenModal", headerShown: false }}
         />
-        <Stack.Screen
-          name="Delivery"
-          component={DeliveryScreen}
-          options={{
-            presentation: "fullScreenModal",
-            headerShown: false,
-          }}
-        />
+        <Stack.Screen name="Delivery" component={DeliveryScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
