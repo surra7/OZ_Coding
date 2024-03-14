@@ -14,7 +14,7 @@ export const getCategories = () => {
 
 export const getFeaturedRestaurantById = (id) => {
   return sanityQuery(
-    `*[_type=='featured'&&_id==$id]{...,restaurants[]->{...,dishes[]->{name}}}[0]`,
-    { id: id }
+    `*[_type=='featured'&&_id==$id]{...,restaurants[]->{...,dishes[]->{...},type->{name}}}[0]`,
+    { id }
   );
 };
