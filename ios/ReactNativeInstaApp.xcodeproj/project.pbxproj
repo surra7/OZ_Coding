@@ -30,6 +30,7 @@
 		00E356EE1AD99517003FC87E /* ReactNativeInstaAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReactNativeInstaAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* ReactNativeInstaAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReactNativeInstaAppTests.m; sourceTree = "<group>"; };
+		042A312F2BAACDAA00D24CE4 /* ReactNativeInstaApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = ReactNativeInstaApp.entitlements; path = ReactNativeInstaApp/ReactNativeInstaApp.entitlements; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* ReactNativeInstaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReactNativeInstaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ReactNativeInstaApp/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = ReactNativeInstaApp/AppDelegate.mm; sourceTree = "<group>"; };
@@ -86,6 +87,7 @@
 		13B07FAE1A68108700A75B9A /* ReactNativeInstaApp */ = {
 			isa = PBXGroup;
 			children = (
+				042A312F2BAACDAA00D24CE4 /* ReactNativeInstaApp.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -465,6 +467,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ReactNativeInstaApp/ReactNativeInstaApp.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = ReactNativeInstaApp/Info.plist;
@@ -492,6 +495,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ReactNativeInstaApp/ReactNativeInstaApp.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = ReactNativeInstaApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -580,10 +584,7 @@
 					"-DFOLLY_USE_LIBCPP=1",
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
@@ -651,10 +652,7 @@
 					"-DFOLLY_USE_LIBCPP=1",
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;

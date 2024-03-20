@@ -1,11 +1,60 @@
-import {View, Text, Image, TouchableOpacity, TextInput} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  TextInput,
+  Platform,
+} from 'react-native';
 import React, {useState} from 'react';
 import Feather from 'react-native-vector-icons/Feather';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionic from 'react-native-vector-icons/Ionicons';
+import PushNotification from 'react-native-push-notification';
+import PushNotificationIOS from '@react-native-community/push-notification-ios';
 
 const PostItem = ({data}) => {
   const [like, setLike] = useState(data.isLiked);
+
+  const handleNotification = title => {
+    if (Platform.OS === 'ios') {
+      // PushNotificationIOS.addNotificationRequest({
+      //   id: title,
+      //   title: `${title}를 클릭했습니다.`,
+      //   body: '메시지 입니다.',
+      // });
+
+      PushNotificationIOS.addNotificationRequest({
+        id: title,
+        title: `${title}를 클릭했습니다.`,
+        body: '메시지 입니다.',
+        fireDate: new Date(Date.now() + 5 * 1000),
+      });
+    } else {
+      // PushNotification.getChannels(function (channel_ids) {
+      //   console.log(channel_ids);
+      // });
+
+      PushNotification.cancelAllLocalNotifications();
+
+      PushNotification.localNotification({
+        channelId: 'insta-channel',
+        title: `${title}를 클릭했습니다.`,
+        message: `메시지 입니다.`,
+        color: 'red',
+        bigText: 'My big text',
+      });
+
+      // PushNotification.localNotificationSchedule({
+      //   channelId: 'insta-channel',
+      //   title: `${title}를 클릭했습니다.`,
+      //   message: `메시지 입니다.`,
+      //   color: 'red',
+      //   date: new Date(Date.now() + 5 * 1000),
+      //   allowWhileIdle: true,
+      // });
+    }
+  };
 
   return (
     <View
@@ -22,10 +71,12 @@ const PostItem = ({data}) => {
           padding: 15,
         }}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Image
-            source={data.postPersonImage}
-            style={{width: 40, height: 40, borderRadius: 100}}
-          />
+          <TouchableOpacity onPress={() => handleNotification(data.postTitle)}>
+            <Image
+              source={data.postPersonImage}
+              style={{width: 40, height: 40, borderRadius: 100}}
+            />
+          </TouchableOpacity>
           <View style={{paddingLeft: 5}}>
             <Text style={{fontSize: 15, fontWeight: 'bold'}}>
               {data.postTitle}

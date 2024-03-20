@@ -1,6 +1,6 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import React from 'react';
+import React, {useEffect} from 'react';
 import Home from './src/screens/Home';
 import Search from './src/screens/Search';
 import Activity from './src/screens/Activity';
@@ -10,8 +10,32 @@ import Status from './src/screens/Status';
 import FriendProfile from './src/screens/FriendProfile';
 import EditProfile from './src/screens/EditProfile';
 import Ionic from 'react-native-vector-icons/Ionicons';
+import messaging from '@react-native-firebase/messaging';
+import {Alert} from 'react-native';
 
 const App = () => {
+  useEffect(() => {
+    getFCMToken();
+  }, []);
+
+  // Register background handler
+  messaging().setBackgroundMessageHandler(async remoteMessage => {
+    console.log('Message handled in the background!', remoteMessage);
+  });
+
+  useEffect(() => {
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+    });
+
+    return unsubscribe;
+  }, []);
+
+  const getFCMToken = async () => {
+    const fcmToken = await messaging().getToken();
+    console.log('fcmToken', fcmToken);
+  };
+
   const Stack = createNativeStackNavigator();
   const Tab = createBottomTabNavigator();
   // eslint-disable-next-line react/no-unstable-nested-components
