@@ -14,7 +14,8 @@ app.set("views", path.join(__dirname, "views"));
 app.use("/static", express.static(path.join(__dirname, "public")));
 
 // 그냥 req.body.name를 보내면 undefined가 나옴
-// -> 해결: express.json()사용 -> body를 파싱해줌
+// => 해결: express.json()사용 => body를 파싱해줌
+// => 또는 body-parser 설치 -> body-parser가져와서 .json()으로 사용
 app.use(express.json());
 // 미들웨어
 // next로 다음 미들웨어로 넘어가다가 마지막 메인 테스크를 마치면 지나갔던 미들웨어를 거꾸로 한번더 거쳐서 되돌아감
