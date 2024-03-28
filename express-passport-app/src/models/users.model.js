@@ -15,6 +15,11 @@ const userSchema = mongoose.Schema({
     unique: true,
     sparse: true, // googleId 값이 null이 중복으로 들어가는 것을 막음
   },
+  kakaoId: {
+    type: String,
+    unique: true,
+    sparse: true,
+  },
 });
 
 const saltRounds = 10;
@@ -28,11 +33,12 @@ userSchema.pre("save", function (next) {
 
       bcrypt.hash(user.password, salt, function (err, hash) {
         if (err) return next(err);
-
         user.password = hash;
         next();
       });
     });
+  } else {
+    next();
   }
 });
 
