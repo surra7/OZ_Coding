@@ -1,8 +1,11 @@
 import { createClient } from "@sanity/client";
 import imageUrlBuilder from "@sanity/image-url";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const client = createClient({
-  projectId: "edpp08uq",
+  projectId: process.env.SANITY_PROJECT_ID,
   dataset: "production",
   useCdn: true,
   apiVersion: "2023-05-03",
