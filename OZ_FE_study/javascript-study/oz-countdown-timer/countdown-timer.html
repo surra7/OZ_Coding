@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="./images/oz_icon.png" />
+  <title>오즈코딩스쿨 | 카운트다운 타이머</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    button:active {
+      background-color: hwb(255 0% 58%);
+      color: white;
+      transition: all 0.2s linear
+    }
+
+    html {
+      height: 100%;
+    }
+
+    body {
+      height: 100%;
+      margin: 0;
+      background-color: #ACE7F1;
+    }
+
+    #container {
+      height: 100%;
+      text-align: center;
+      position: relative;
+    }
+
+    #title {
+      margin: 0;
+      font-size: 36px;
+      font-weight: 800;
+      margin-top: 45px;
+    }
+
+    #title+p {
+      margin-top: 10px;
+      font-size: 16px;
+      font-style: italic;
+    }
+
+    #container__timer {
+      min-height: calc(100% - 80px);
+      padding: 20px 60px;
+      margin: 0 auto;
+    }
+
+    #countdown {
+      margin-top: 20px;
+    }
+
+    #countdown>div {
+      background-color: black;
+      color: white;
+      margin: 8px;
+      display: inline-block;
+      width: 110px;
+      height: 100px;
+      text-align: center;
+      border-radius: 16px;
+    }
+
+    #countdown>div>span {
+      font-size: 52px;
+      font-weight: 900;
+      height: 80px;
+      line-height: 108px;
+      letter-spacing: -.2px;
+    }
+
+    #countdown>div>span:nth-child(2) {
+      display: block;
+      font-size: 18px;
+      font-weight: 400;
+      color: hwb(255 0% 58%);
+      position: relative;
+      bottom: 20px;
+    }
+
+    #div__comment {
+      margin: 20px;
+    }
+
+    #comment {
+      font-size: 30px;
+      font-weight: 700;
+      display: inline-block;
+      animation: motion 0.3s linear 0s infinite alternate;
+      margin-top: 0;
+      margin-bottom: 0px;
+      position: relative;
+    }
+
+    @keyframes motion {
+      0% {
+        margin-top: 0px;
+        margin-bottom: 10px;
+      }
+
+      100% {
+        margin-top: 10px;
+        margin-bottom: 0px;
+      }
+    }
+
+    #setting {
+      margin-top: 12px;
+    }
+
+    #setting-button {
+      width: 360px;
+      height: 50px;
+      margin: 10px;
+      border: 1px solid hwb(255 0% 58%);
+      font-size: 20px;
+      font-weight: 500;
+      border-radius: 5px;
+      box-shadow: 2px 2px 2px hwb(255 0% 80%);
+      cursor: pointer;
+      /* display: none; */
+    }
+
+    #setting__end-day {
+      margin: 10px;
+      display: none;
+    }
+
+    #setting__end-day span {
+      color: hwb(255 0% 58%);
+    }
+
+    #setting__end-day select {
+      width: 100px;
+      height: 30px;
+      border: 1px solid hwb(255 0% 58%);
+      border-radius: 5px;
+    }
+
+    #confirm-button {
+      width: 40px;
+      height: 30px;
+      border: 1px solid hwb(255 0% 58%);
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .footer {
+      width: 100%;
+      height: 80px;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: center;
+      background-color: hsla(225, 26%, 91%, 0.914);
+      margin: auto;
+      line-height: 80px;
+    }
+
+    .footer a {
+      color: hwb(255 0% 58%);
+      text-decoration: none;
+    }
+
+    @media screen and (max-width: 655px) {
+      #container__timer {
+        min-height: calc(100% - 70px);
+        padding: 10px 40px;
+        margin: 0 auto;
+      }
+
+      #title {
+        margin-top: 20px;
+        font-size: 32px;
+        margin-bottom: 5px;
+      }
+
+      #countdown {
+        margin-top: 20px;
+        width: 280px;
+        height: 280px;
+        margin: auto;
+        position: relative;
+        bottom: 0px;
+      }
+
+      #countdown>div {
+        margin: 10px;
+        display: inline-block;
+        width: 100px;
+        height: 86px;
+      }
+
+      #countdown>div:nth-child(3) {
+        position: relative;
+        bottom: 16px;
+      }
+
+      #countdown>div:nth-child(4) {
+        position: relative;
+        bottom: 16px;
+      }
+
+      #countdown>div>span {
+        font-size: 46px;
+        line-height: 94px;
+      }
+
+      #countdown>div>span:nth-child(2) {
+        bottom: 30px;
+        width: 100px;
+        height: 40px;
+      }
+
+      #div__comment {
+        margin: 16px 0 0;
+      }
+
+      #comment {
+        font-size: 26px;
+        font-weight: 700;
+      }
+
+      #setting-button {
+        width: 300px;
+        height: 45px;
+        font-size: 16px;
+      }
+
+      .footer {
+        height: 70px;
+        line-height: 70px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <div id="container__timer">
+      <h2 id="title">오즈코딩 캠프 종료까지</h2>
+      <p id="oz-end">(2024.06.24)</p>
+
+      <div id="countdown">
+        <div>
+          <span id="day">일</span>
+          <span>Days</span>
+        </div>
+        <div>
+          <span id="hour">시</span>
+          <span>Hours</span>
+        </div>
+        <div>
+          <span id="min">분</span>
+          <span>Minutes</span>
+        </div>
+        <div>
+          <span id="sec">초</span>
+          <span>Seconds</span>
+        </div>
+      </div>
+      <div id="div__comment">
+        <div id="comment">🔥남은 기간 화이팅!!🔥</div>
+      </div>
+
+      <div id="setting">
+        <button id="setting-button">종료 날짜 설정</button>
+        <div id="setting__end-day">
+          <span>종료 날짜&nbsp;</span>
+          <select id="select__month">
+            <option disabled selected value="default">월</option>
+          </select>
+          <select id="select__day">
+            <option>일</option>
+          </select>
+          <button id="confirm-button">취소</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      © 2023. <a href="https://ozcodingschool.com/" target="_blank">ozcodingschool</a>. All rights
+      reserved. Developed by <a href="#">황수빈</a>.
+    </div>
+  </div>
+  <script>
+    const title = document.getElementById('title');
+    const p = document.getElementById('oz-end');
+    const countDown = document.getElementById('countdown');
+    const day = document.getElementById('day');
+    const hour = document.getElementById('hour');
+    const min = document.getElementById('min');
+    const sec = document.getElementById('sec');
+    const settingButton = document.getElementById('setting-button');
+    const setEndDay = document.getElementById('setting__end-day');
+    const selectMonth = document.getElementById('select__month');
+    const selectDay = document.getElementById('select__day');
+    const confirmButton = document.getElementById('confirm-button');
+
+    let endDay = new Date(2024, 5, 25, 23, 59, 59, 999);
+
+    let timerId;
+    timerId = setInterval(function () {
+      const now = new Date();
+
+      let diffTime = endDay.getTime() - now.getTime();
+      let timeGap = 0;
+
+      let diffDay = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      timeGap = diffTime % (1000 * 60 * 60 * 24);
+      let diffHour = Math.floor(timeGap / (1000 * 60 * 60));
+      timeGap = timeGap % (1000 * 60 * 60);
+      let diffMin = Math.floor(timeGap / (1000 * 60));
+      timeGap = timeGap % (1000 * 60);
+      let diffSec = Math.floor(timeGap / (1000));
+
+      if (diffSec <= 10) {
+        sec.style.color = "#FF3333";
+      } else {
+        sec.style.color = "white";
+      }
+
+      day.textContent = `${diffDay.toString().padStart(2, '0')}`;
+      hour.textContent = `${diffHour.toString().padStart(2, '0')}`;
+      min.textContent = `${diffMin.toString().padStart(2, '0')}`;
+      sec.textContent = `${diffSec.toString().padStart(2, '0')}`;
+
+    }, 1000);
+
+    settingButton.addEventListener('click', function () {
+      settingButton.style.display = "none";
+      setEndDay.style.display = "inline-block";
+    })
+
+    const nowMonth = new Date().getMonth() + 1;
+    const nowDate = new Date().getDate();
+
+    for (let i = nowMonth; i <= 12; i++) {
+      const newMonth = document.createElement('option');
+      newMonth.textContent = `${i}월`;
+      newMonth.value = i;
+      selectMonth.appendChild(newMonth);
+    }
+
+    selectMonth.addEventListener('change', function () {
+      selectDay.innerHTML = '';
+      const monthDate = new Date(2024, selectMonth.value, 0).getDate();
+
+      // 현재와 같은 달이면 오늘 이후 부터 선택가능
+      if (selectMonth.value == nowMonth) {
+        for (let i = nowDate + 1; i <= monthDate; i++) {
+          const newDate = document.createElement('option');
+          newDate.textContent = `${i}일`;
+          newDate.value = i;
+          selectDay.appendChild(newDate);
+        }
+      } else {
+        for (let i = 1; i <= monthDate; i++) {
+          const newDate = document.createElement('option');
+          newDate.textContent = `${i}일`;
+          newDate.value = i;
+          selectDay.appendChild(newDate);
+        }
+      }
+      confirmButton.textContent = "확인";
+    })
+
+    confirmButton.addEventListener('click', function () {
+      if (confirmButton.textContent !== "취소") {
+        endDay = new Date(2024, selectMonth.value - 1, selectDay.value - 1, 23, 59, 59, 999);
+        title.textContent = `${selectMonth.value}월 ${selectDay.value}일 까지 남은 시간`
+        title.style.paddingBottom = "30px";
+        p.textContent = "";
+      }
+
+      setEndDay.style.display = "none";
+      settingButton.style.display = "inline-block";
+      selectMonth.value = "default";
+      selectDay.innerHTML = "";
+      confirmButton.textContent = "취소";
+    })
+
+  </script>
+</body>
+
+</html>
