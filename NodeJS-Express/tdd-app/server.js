@@ -22,3 +22,9 @@ app.use("/api/products", productRoutes);
 app.listen(PORT, () => {
   console.log("listening on port " + PORT);
 });
+
+app.use((error, req, res, next) => {
+  res.status(500).json({ message: error.message });
+});
+
+module.exports = app;
